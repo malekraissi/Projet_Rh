@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Pole{% endblock %}
+
+{% block body %}
+    <h1>Modifier Pole</h1>
+
+    {{ include('pole/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('pole_index') }}"> liste des poles </a>
+
+    {{ include('pole/_delete_form.html.twig') }}
+{% endblock %}

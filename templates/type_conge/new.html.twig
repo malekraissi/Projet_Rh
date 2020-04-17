@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TypeConge{% endblock %}
+
+{% block body %}
+    <h1>Créer des Types Congés</h1>
+
+    {{ include('type_conge/_form.html.twig') }}
+
+    <a href="{{ path('type_conge_index') }}">liste de types de congés</a>
+{% endblock %}

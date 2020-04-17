@@ -1,0 +1,10 @@
+easy_admin:
+  entities:
+    Contrat:
+      class: App\Entity\Contrat
+      list:
+        fields:
+          - { property: 'type' , type: 'string',label: 'nom' }
+        actions:
+          - {name: 'edit' , icon: 'pencil' , label: false , css_class: 'btn btn-secondary' }
+          - {name: 'delete' , icon: 'trash' , label: false , css_class: 'btn btn-success'  }

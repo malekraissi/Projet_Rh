@@ -1,0 +1,18 @@
+{% extends '@EasyAdmin/default/edit.html.twig' %}
+
+
+
+{% block entity_form %}
+    {{ form_start (form) }}
+    <div class ="row">
+    <div class ="col-sm-4">
+        {{ form_widget (form.nom) }}
+
+    </div>
+    </div>
+    {{ form_end (form) }}
+{% endblock entity_form %}
+
+
+
+

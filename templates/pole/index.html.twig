@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}les poles{% endblock %}
+
+{% block body %}
+    <h1>les poles</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pole in poles %}
+            <tr>
+
+                <td>{{ pole.nom }}</td>
+                <td>
+                    <a href="{{ path('pole_show', {'id': pole.id}) }}">afficher</a>
+                    <a href="{{ path('pole_edit', {'id': pole.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('pole_new') }}">Ajouter nouveau pole</a>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeConge index{% endblock %}
+
+{% block body %}
+    <h1>Types de Congés </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Nbre_jour</th>
+                <th>Paiement</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_conge in type_conges %}
+            <tr>
+                <td>{{ type_conge.nom }}</td>
+                <td>{{ type_conge.nbreJour }}</td>
+                <td>{{ type_conge.paiement ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('type_conge_show', {'id': type_conge.id}) }}">Afficher</a>
+                    <a href="{{ path('type_conge_edit', {'id': type_conge.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">pas de data</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('type_conge_new') }}">Créer nouveau congé</a>
+{% endblock %}

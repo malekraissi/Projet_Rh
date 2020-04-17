@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Type Congé{% endblock %}
+
+{% block body %}
+    <h1>Modifier Type Congé</h1>
+
+    {{ include('type_conge/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('type_conge_index') }}">liste de congés</a>
+
+    {{ include('type_conge/_delete_form.html.twig') }}
+{% endblock %}

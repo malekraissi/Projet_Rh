@@ -1,0 +1,9 @@
+easy_admin:
+  entities:
+    Equipe:
+      class: App\Entity\Equipe
+      list:
+        fields:
+          - { property: 'nom' , type: 'string',label: 'nom' }
+          - { property: 'poles',type: 'string' ,label: 'poles' }
+        actions:

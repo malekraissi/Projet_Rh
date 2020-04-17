@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter nouvel Equipe{% endblock %}
+
+{% block body %}
+    <h1>Ajouter nouvel Equipe</h1>
+
+    {{ include('equipe/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('equipe_index') }}"> liste des equipes</a>
+
+    {{ include('equipe/_delete_form.html.twig') }}
+{% endblock %}

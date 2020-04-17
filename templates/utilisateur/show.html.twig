@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Utilisateur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ utilisateur.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ utilisateur.email }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ utilisateur.password }}</td>
+            </tr>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ utilisateur.matricule }}</td>
+            </tr>
+            <tr>
+                <th>Civilite</th>
+                <td>{{ utilisateur.civilite }}</td>
+            </tr>
+            <tr>
+                <th>Rip</th>
+                <td>{{ utilisateur.rip }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ utilisateur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ utilisateur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Situation_familiale</th>
+                <td>{{ utilisateur.situationFamiliale }}</td>
+            </tr>
+            <tr>
+                <th>Universite</th>
+                <td>{{ utilisateur.universite }}</td>
+            </tr>
+            <tr>
+                <th>Diplome</th>
+                <td>{{ utilisateur.diplome }}</td>
+            </tr>
+            <tr>
+                <th>Specialite</th>
+                <td>{{ utilisateur.specialite }}</td>
+            </tr>
+            <tr>
+                <th>Annee_obtination</th>
+                <td>{{ utilisateur.anneeObtination }}</td>
+            </tr>
+            <tr>
+                <th>Langage</th>
+                <td>{{ utilisateur.langage }}</td>
+            </tr>
+            <tr>
+                <th>Date_naiss</th>
+                <td>{{ utilisateur.dateNaiss ? utilisateur.dateNaiss|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ utilisateur.cin }}</td>
+            </tr>
+            <tr>
+                <th>Date_cin</th>
+                <td>{{ utilisateur.dateCin ? utilisateur.dateCin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nationalite</th>
+                <td>{{ utilisateur.nationalite }}</td>
+            </tr>
+            <tr>
+                <th>Num_cnss</th>
+                <td>{{ utilisateur.numCnss }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ utilisateur.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Code_postal</th>
+                <td>{{ utilisateur.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Tel1</th>
+                <td>{{ utilisateur.tel1 }}</td>
+            </tr>
+            <tr>
+                <th>Tel2</th>
+                <td>{{ utilisateur.tel2 }}</td>
+            </tr>
+            <tr>
+                <th>Rib</th>
+                <td>{{ utilisateur.rib }}</td>
+            </tr>
+            <tr>
+                <th>Mail_pro</th>
+                <td>{{ utilisateur.mailPro }}</td>
+            </tr>
+            <tr>
+                <th>Nom1_urgence</th>
+                <td>{{ utilisateur.nom1Urgence }}</td>
+            </tr>
+            <tr>
+                <th>Prenom1_urgence</th>
+                <td>{{ utilisateur.prenom1Urgence }}</td>
+            </tr>
+            <tr>
+                <th>Lien1</th>
+                <td>{{ utilisateur.lien1 }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ utilisateur.lieu }}</td>
+            </tr>
+            <tr>
+                <th>Telephone1</th>
+                <td>{{ utilisateur.telephone1 }}</td>
+            </tr>
+            <tr>
+                <th>Nom2_urgence</th>
+                <td>{{ utilisateur.nom2Urgence }}</td>
+            </tr>
+            <tr>
+                <th>Prenom2_urgence</th>
+                <td>{{ utilisateur.prenom2Urgence }}</td>
+            </tr>
+            <tr>
+                <th>Lien2</th>
+                <td>{{ utilisateur.lien2 }}</td>
+            </tr>
+            <tr>
+                <th>Telephone2</th>
+                <td>{{ utilisateur.telephone2 }}</td>
+            </tr>
+            <tr>
+                <th>Date_deb</th>
+                <td>{{ utilisateur.dateDeb ? utilisateur.dateDeb|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{{ utilisateur.dateFin ? utilisateur.dateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Periode_essai</th>
+                <td>{{ utilisateur.periodeEssai ? utilisateur.periodeEssai|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Deb_periode</th>
+                <td>{{ utilisateur.debPeriode ? utilisateur.debPeriode|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Fin_periode</th>
+                <td>{{ utilisateur.finPeriode ? utilisateur.finPeriode|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_embauche</th>
+                <td>{{ utilisateur.dateEmbauche ? utilisateur.dateEmbauche|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_depart</th>
+                <td>{{ utilisateur.dateDepart ? utilisateur.dateDepart|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Raison</th>
+                <td>{{ utilisateur.raison }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('utilisateur_index') }}">back to list</a>
+
+    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+
+    {{ include('utilisateur/_delete_form.html.twig') }}
+{% endblock %}
