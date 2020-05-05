@@ -19,20 +19,28 @@ class Chef
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Utilisateur", inversedBy="chefs")
-     * @ORM\JoinTable(name="Managers")
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Utilisateur", inversedBy="chefs")
+     * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Utilisateur", mappedBy="chefs")
+     */
+    private $utilisateurs;
+
     public function __construct()
     {
-        $this->nom = new ArrayCollection();
-        $this->prenom = new ArrayCollection();
+        $this->utilisateurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -40,28 +48,38 @@ class Chef
         return $this->id;
     }
 
-    /**
-     * @return Collection|Utilisateur[]
-     */
-    public function getNom(): Collection
+    public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function addNom(Utilisateur $nom): self
+    public function setNom(string $nom): self
     {
-        if (!$this->nom->contains($nom)) {
-            $this->nom[] = $nom;
-        }
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function removeNom(Utilisateur $nom): self
+    public function getPrenom(): ?string
     {
-        if ($this->nom->contains($nom)) {
-            $this->nom->removeElement($nom);
-        }
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
@@ -69,24 +87,29 @@ class Chef
     /**
      * @return Collection|Utilisateur[]
      */
-    public function getPrenom(): Collection
+    public function getUtilisateurs(): Collection
     {
-        return $this->prenom;
+        return $this->utilisateurs;
     }
 
-    public function addPrenom(Utilisateur $prenom): self
+    public function addUtilisateur(Utilisateur $utilisateur): self
     {
-        if (!$this->prenom->contains($prenom)) {
-            $this->prenom[] = $prenom;
+        if (!$this->utilisateurs->contains($utilisateur)) {
+            $this->utilisateurs[] = $utilisateur;
+            $utilisateur->setChefs($this);
         }
 
         return $this;
     }
 
-    public function removePrenom(Utilisateur $prenom): self
+    public function removeUtilisateur(Utilisateur $utilisateur): self
     {
-        if ($this->prenom->contains($prenom)) {
-            $this->prenom->removeElement($prenom);
+        if ($this->utilisateurs->contains($utilisateur)) {
+            $this->utilisateurs->removeElement($utilisateur);
+            // set the owning side to null (unless already changed)
+            if ($utilisateur->getChefs() === $this) {
+                $utilisateur->setChefs(null);
+            }
         }
 
         return $this;

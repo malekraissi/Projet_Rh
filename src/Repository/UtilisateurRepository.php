@@ -6,6 +6,7 @@ use App\Entity\Utilisateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
+
 /**
  * @method Utilisateur|null find($id, $lockMode = null, $lockVersion = null)
  * @method Utilisateur|null findOneBy(array $criteria, array $orderBy = null)
@@ -19,32 +20,16 @@ class UtilisateurRepository extends ServiceEntityRepository
         parent::__construct($registry, Utilisateur::class);
     }
 
-    // /**
-    //  * @return Utilisateur[] Returns an array of Utilisateur objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+public function findTitre():Array
+{
 
-    /*
-    public function findOneBySomeField($value): ?Utilisateur
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+$qb= $this->createQueryBuilder('u');
+$qb->select('u.prenom' ,'u.nom')
+    ->where('u.titre = :val')
+    ->setParameter('val', 'chef')
+    ->setParameter('val' , 'directeur');
+    $query = $qb->getQuery();
+
+    return $query->execute();
+}
 }

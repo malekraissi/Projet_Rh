@@ -33,25 +33,26 @@ class UtilisateurController extends AbstractController
         $utilisateur = new Utilisateur();
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $pass =$form->getData()->getPassword();
+            $mail=$form->getData()->getMailPro();
         $message = (new \Swift_Message('Nouveau contact'))
-
-            ->setFrom($form['email'])
-            ->setTo('malek.raissi9@gmail.com')
+            ->setSubject("Bienvenue à ABSHORE")
+            ->setFrom('malek.raissi9@gmail.com')
+            ->setReplyTo('malek.raissi9@gmail.com')
+            ->setTo($form->getData()->getEmail())
             // On crée le texte avec la vue
             ->setBody(
                 $this->renderView(
-                    'utilisateur/new.html.twig', compact('contact')
+                    'utilisateur/demande.html.twig' ,[
+                        'pass' => $pass , 'mail'=>$mail] , compact('contact')
                 ),
                 'text/html'
-            )
-        ;
+            );
         $mailer->send($message);
 
         $this->addFlash('message', 'Votre message a été transmis, nous vous répondrons dans les meilleurs délais.'); // Permet un message flash de renvoi
-
-
-
-
+    }
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($utilisateur);
@@ -101,7 +102,7 @@ class UtilisateurController extends AbstractController
      */
     public function delete(Request $request, Utilisateur $utilisateur): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$utilisateur->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $utilisateur->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($utilisateur);
             $entityManager->flush();
@@ -110,27 +111,4 @@ class UtilisateurController extends AbstractController
         return $this->redirectToRoute('utilisateur_index');
     }
 
-public function Mailer(Request $request,\Swift_Mailer $mailer)
-{$utilisateur = new Utilisateur();
-    $form = $this->createForm(UtilisateurType::class, $utilisateur);
-    $form->handleRequest($request);
-    $contact = $form->getData();
-    $message = (new \Swift_Message('Nouveau contact'))
-
-        ->setFrom($contact['email'])
-        ->setTo('malek.raissi9@gmail.com')
-        // On crée le texte avec la vue
-        ->setBody(
-            $this->renderView(
-                'utilisateur/new.html.twig', compact('contact')
-            ),
-            'text/html'
-        )
-    ;
-    $mailer->send($message);
-
-    $this->addFlash('message', 'Votre message a été transmis, nous vous répondrons dans les meilleurs délais.'); // Permet un message flash de renvoi
-
-
-
-}}
+}

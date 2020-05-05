@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200312082524 extends AbstractMigration
+final class Version20200420135130 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,7 @@ final class Version20200312082524 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE pole DROP FOREIGN KEY FK_FD6042E1737800BA');
-        $this->addSql('DROP INDEX IDX_FD6042E1737800BA ON pole');
-        $this->addSql('ALTER TABLE pole DROP equipes_id');
+        $this->addSql('CREATE TABLE validateur (id INT AUTO_INCREMENT NOT NULL, rh VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +30,6 @@ final class Version20200312082524 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE pole ADD equipes_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE pole ADD CONSTRAINT FK_FD6042E1737800BA FOREIGN KEY (equipes_id) REFERENCES equipe (id)');
-        $this->addSql('CREATE INDEX IDX_FD6042E1737800BA ON pole (equipes_id)');
+        $this->addSql('DROP TABLE validateur');
     }
 }

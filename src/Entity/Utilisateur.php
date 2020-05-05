@@ -108,6 +108,13 @@ class Utilisateur
 
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $titre;
+
+
+
+    /**
      * @ORM\Column(type="date")
      */
     private $date_naiss;
@@ -255,14 +262,16 @@ class Utilisateur
      */
     private $taches;
 
-
-
-
-
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Chef", mappedBy="nom")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Chef", inversedBy="utilisateurs")
      */
     private $chefs;
+
+
+
+
+
+
 
 
     public function getId(): ?int
@@ -414,6 +423,25 @@ class Utilisateur
     {
         $this->universite = $universite;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * @param mixed $titre
+     */
+    public function setTitre($titre): void
+    {
+        $this->titre = $titre;
+    }
+
+
+
 
     /**
      * @return mixed
@@ -794,18 +822,23 @@ class Utilisateur
         return $this;
     }
 
-    public function getPeriodeEssai(): ?\DateTimeInterface
+    /**
+     * @return mixed
+     */
+    public function getPeriodeEssai()
     {
         return $this->periode_essai;
-
     }
 
-    public function setPeriodeEssai(\DateTimeInterface $periode_essai): self
+    /**
+     * @param mixed $periode_essai
+     */
+    public function setPeriodeEssai($periode_essai): void
     {
         $this->periode_essai = $periode_essai;
-
-        return $this;
     }
+
+
 
     /**
      * @return mixed
@@ -865,7 +898,6 @@ class Utilisateur
         $this->password = generateRandomString();
         $this->matricule = numeroAL();
         $this->taches = new ArrayCollection();
-        $this->chefs = new ArrayCollection();
 
 
     }
@@ -921,37 +953,21 @@ class Utilisateur
         return $this;
     }
 
-
-
-
-
-    /**
-     * @return Collection|Chef[]
-     */
-    public function getChefs(): Collection
+    public function getChefs(): ?Chef
     {
         return $this->chefs;
     }
 
-    public function addChef(Chef $chef): self
+    public function setChefs(?Chef $chefs): self
     {
-        if (!$this->chefs->contains($chef)) {
-            $this->chefs[] = $chef;
-            $chef->addNom($this);
-        }
+        $this->chefs = $chefs;
 
         return $this;
     }
 
-    public function removeChef(Chef $chef): self
-    {
-        if ($this->chefs->contains($chef)) {
-            $this->chefs->removeElement($chef);
-            $chef->removeNom($this);
-        }
 
-        return $this;
-    }
+
+
 }
 
 

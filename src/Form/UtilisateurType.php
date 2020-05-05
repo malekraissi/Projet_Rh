@@ -6,6 +6,7 @@ use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use function Sodium\add;
 
 class UtilisateurType extends AbstractType
 {
@@ -28,7 +29,6 @@ class UtilisateurType extends AbstractType
             ->add('date_naiss')
             ->add('cin')
             ->add('date_cin')
-
             ->add('num_cnss')
             ->add('adresse')
             ->add('code_postal')
@@ -53,7 +53,7 @@ class UtilisateurType extends AbstractType
             ->add('raison')
             ->add('contrat')
             ->add('equipes')
-        ;
+        ->add('titre');
     }
 
     public function configureOptions(OptionsResolver $resolver)
