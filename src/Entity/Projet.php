@@ -33,7 +33,15 @@ class Projet
      */
     private $date_fin;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Tache", mappedBy="projet")
+     */
+    private $taches;
 
+    public function __construct()
+    {
+        $this->taches = new ArrayCollection();
+    }
 
 
 
@@ -78,6 +86,22 @@ class Projet
         $this->date_fin = $date_fin;
 
         return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTaches(): ArrayCollection
+    {
+        return $this->taches;
+    }
+
+    /**
+     * @param ArrayCollection $taches
+     */
+    public function setTaches(ArrayCollection $taches): void
+    {
+        $this->taches = $taches;
     }
 
 

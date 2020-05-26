@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consomme{% endblock %}
+
+{% block body %}
+    <h1>Consomme</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ consomme.id }}</td>
+            </tr>
+            <tr>
+                <th>Client</th>
+                <td>{{ consomme.client }}</td>
+            </tr>
+            <tr>
+                <th>Projet</th>
+                <td>{{ consomme.projet }}</td>
+            </tr>
+            <tr>
+                <th>Tache</th>
+                <td>{{ consomme.tache }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ consomme.date ? consomme.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Heures</th>
+                <td>{{ consomme.heures }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ consomme.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('consomme_index') }}">back to list</a>
+
+    <a href="{{ path('consomme_edit', {'id': consomme.id}) }}">edit</a>
+
+    {{ include('consomme/_delete_form.html.twig') }}
+{% endblock %}

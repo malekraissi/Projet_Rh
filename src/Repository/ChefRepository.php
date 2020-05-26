@@ -19,32 +19,13 @@ class ChefRepository extends ServiceEntityRepository
         parent::__construct($registry, Chef::class);
     }
 
-    // /**
-    //  * @return Chef[] Returns an array of Chef objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findChef():Array
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Chef
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $qb= $this->createQueryBuilder('c');
+        $qb->select('c.prenom' ,'c.nom');
+        $query = $qb->getQuery();
+
+        return $query->execute();
     }
-    */
 }

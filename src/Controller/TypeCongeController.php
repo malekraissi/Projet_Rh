@@ -15,6 +15,31 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TypeCongeController extends AbstractController
 {
+
+
+    /**
+     * @param TypeCongeRepository $TypeCongeRepository
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @Route("/typeconge" , name ="affiche_type")
+     */
+    public function affiche(TypeCongeRepository $TypeCongeRepository){
+
+        return  $this->json(['affiche'=>$TypeCongeRepository->findType()],200);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @Route("/", name="type_conge_index", methods={"GET"})
      */

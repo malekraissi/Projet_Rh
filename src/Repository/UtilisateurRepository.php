@@ -26,7 +26,6 @@ public function findTitre():Array
 $qb= $this->createQueryBuilder('u');
 $qb->select('u.prenom' ,'u.nom')
     ->where('u.titre = :val')
-    ->setParameter('val', 'chef')
     ->setParameter('val' , 'directeur');
     $query = $qb->getQuery();
 

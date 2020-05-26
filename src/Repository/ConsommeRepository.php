@@ -2,42 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Client;
+use App\Entity\Consomme;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Client|null find($id, $lockMode = null, $lockVersion = null)
- * @method Client|null findOneBy(array $criteria, array $orderBy = null)
- * @method Client[]    findAll()
- * @method Client[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Consomme|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Consomme|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Consomme[]    findAll()
+ * @method Consomme[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ClientRepository extends ServiceEntityRepository
+class ConsommeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Client::class);
+        parent::__construct($registry, Consomme::class);
     }
-
-
-    public function findClient():Array
-    {
-
-        $qb= $this->createQueryBuilder('c');
-        $qb->select('c.nom');
-        $query = $qb->getQuery();
-
-        return $query->execute();
-    }
-
-
-
-
-
-
 
     // /**
-    //  * @return Client[] Returns an array of Client objects
+    //  * @return Consomme[] Returns an array of Consomme objects
     //  */
     /*
     public function findByExampleField($value)
@@ -54,7 +37,7 @@ class ClientRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Client
+    public function findOneBySomeField($value): ?Consomme
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

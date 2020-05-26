@@ -19,32 +19,19 @@ class TypeCongeRepository extends ServiceEntityRepository
         parent::__construct($registry, TypeConge::class);
     }
 
-    // /**
-    //  * @return TypeConge[] Returns an array of TypeConge objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findType():Array
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?TypeConge
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $qb= $this->createQueryBuilder('t');
+        $qb->select('t.nom');
+        $query = $qb->getQuery();
+
+        return $query->execute();
     }
-    */
+
+
+
+
+
+
 }

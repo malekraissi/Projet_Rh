@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurType;
+use App\Repository\ChefRepository;
 use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UtilisateurController extends AbstractController
 {
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @Route("/affiche" , name ="affiche_chef")
+     */
+    public function affiche(ChefRepository $chefRepository){
+
+        return  $this->json(['affiche'=>$chefRepository->findChef()],200);
+    }
+
     /**
      * @Route("/", name="utilisateur_index", methods={"GET"})
      */
@@ -24,6 +35,7 @@ class UtilisateurController extends AbstractController
             'utilisateurs' => $utilisateurRepository->findAll(),
         ]);
     }
+
 
     /**
      * @Route("/new", name="utilisateur_new", methods={"GET","POST"})

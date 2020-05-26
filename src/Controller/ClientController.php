@@ -20,10 +20,24 @@ class ClientController extends AbstractController
      */
     public function index(ClientRepository $clientRepository): Response
     {
-        return $this->render('client/index.html.twig', [
-            'clients' => $clientRepository->findAll(),
-        ]);
     }
+
+    /**
+     * @param ClientRepository $clientRepository
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @Route("/affiche" , name ="affiche_client")
+     */
+    public function affiche(ClientRepository $clientRepository){
+
+        return  $this->json($clientRepository->findClient(),200);
+    }
+
+
+
+
+
+
+
 
     /**
      * @Route("/new", name="client_new", methods={"GET","POST"})

@@ -33,7 +33,6 @@ class Utilisateur
      * @ORM\Column(type="string", length=255)
      */
     private $password;
-
     /**
      * @ORM\Column(type="integer")
      */
