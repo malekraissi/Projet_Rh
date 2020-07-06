@@ -1,0 +1,92 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}New Assurance{% endblock %}
+
+{% block body %}
+
+
+    {{ form_start(form) }}
+
+    <div class="container">
+
+        <div class="card bg-light">
+            <div class="col-md-12 col-xl-12">
+                <fieldset>
+                    <legend>Ajouter Nouvel Fichier d'assurance</legend>
+                    <article class="card-body mx-auto" style="max-width: 1000px;">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+
+                                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                    </div>
+                                    {{ form_errors(form.fichier) }}
+                                    {{ form_widget(form.fichier ,  {'attr': {'placeholder': 'nom de fichier' , 'class': 'form-control'}})}}
+                                    {{ form_help(form.fichier ) }}
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+
+                                        <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+                                    </div>
+                                    {{ form_errors(form.nom) }}
+                                    {{ form_widget(form.nom)}}
+                                    {{ form_help(form.nom ) }}
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+
+
+                                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                    </div>
+                                    {{ form_errors(form.utilisateur) }}
+                                    {{ form_widget(form.utilisateur ,  {'attr': {'placeholder': 'nom de salarié' , 'class': 'form-control'}})}}
+                                    {{ form_help(form.utilisateur ) }}
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+
+                                        <span class="input-group-text"> <i class="fa fa-calendar-o"></i> </span>
+                                    </div>
+                                    {{ form_errors(form.date) }}
+                                    {{ form_widget(form.date ,  {'attr': {'placeholder': ' date de création' , 'class': 'form-control'}})}}
+                                    {{ form_help(form.date ) }}
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="center">
+                            <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+                        </div>
+                    </article>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+
+    {{ form_end(form) }}
+
+    <ul>
+<li>
+    <a href="{{ path('assurance_index') }}"> liste des fichiers</a>
+</li>
+</ul>
+
+{% endblock %}

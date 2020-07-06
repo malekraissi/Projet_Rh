@@ -19,13 +19,12 @@
 
                 <td>{{ contrat.type }}</td>
                 <td>
-                    <a href="{{ path('contrat_show', {'id': contrat.id}) }}">Afficher</a>
                     <a href="{{ path('contrat_edit', {'id': contrat.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">pas de data</td>
             </tr>
         {% endfor %}
         </tbody>

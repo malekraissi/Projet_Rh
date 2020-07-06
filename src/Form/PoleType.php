@@ -13,7 +13,6 @@ class PoleType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('equipe')
         ;
     }
 

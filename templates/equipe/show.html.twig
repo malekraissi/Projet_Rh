@@ -7,10 +7,7 @@
 
     <table class="table">
         <tbody>
-            <tr>
 
-                <td>{{ equipe.id }}</td>
-            </tr>
             <tr>
                 <th>Nom</th>
                 <td>{{ equipe.nom }}</td>
@@ -18,7 +15,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('equipe_index') }}"> liste des equipes</a>
+    <a href="{{ path('equipe_index') }}"> liste d'équipe</a>
 
     <a href="{{ path('equipe_edit', {'id': equipe.id}) }}">Modifier</a>
 

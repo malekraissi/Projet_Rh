@@ -4,9 +4,12 @@ namespace App\Form;
 
 use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use function Sodium\add;
+use Symfony\Component\Form\Extension\Core\TextType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class UtilisateurType extends AbstractType
 {
@@ -20,15 +23,30 @@ class UtilisateurType extends AbstractType
             ->add('nbre_enfant')
             ->add('nom')
             ->add('prenom')
-            ->add('situation_familiale')
+            ->add('situation_familiale', ChoiceType::class, [
+                'choices'  => [
+                    'célibataire' => 'célibataire',
+                    'marié' => 'marié',
+                    'divorcé' => 'divorcé',
+                    'veuf' => 'veuf',
+                ],
+            ])
             ->add('universite')
             ->add('diplome')
             ->add('specialite')
             ->add('annee_obtination')
             ->add('langage')
-            ->add('date_naiss')
+            ->add('date_naiss', BirthdayType::class, [
+                'placeholder' => [
+                    'année' => 'Year', 'mois' => 'Month', 'jour' => 'Day',
+                ]
+            ])
             ->add('cin')
-            ->add('date_cin')
+            ->add('date_cin', BirthdayType::class, [
+                'placeholder' => [
+                    'année' => 'Year', 'mois' => 'Month', 'jour' => 'Day',
+                ]
+            ])
             ->add('num_cnss')
             ->add('adresse')
             ->add('code_postal')
@@ -53,6 +71,7 @@ class UtilisateurType extends AbstractType
             ->add('raison')
             ->add('contrat')
             ->add('equipes')
+
         ->add('titre');
     }
 

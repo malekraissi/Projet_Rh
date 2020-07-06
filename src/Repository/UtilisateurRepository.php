@@ -31,4 +31,36 @@ $qb->select('u.prenom' ,'u.nom')
 
     return $query->execute();
 }
+
+
+
+    public function findEmailChef():Array
+    {
+
+        $qb= $this->createQueryBuilder('u');
+        $qb->where('u.titre = :val')
+            ->setParameter('val' , 'chef');
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+

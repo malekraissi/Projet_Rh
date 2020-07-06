@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SalarieEtrange{% endblock %}
+
+{% block body %}
+    <h1>Create new SalarieEtrange</h1>
+
+    {{ include('salarie_etrange/_form.html.twig') }}
+
+    <a href="{{ path('salarie_etrange_index') }}">back to list</a>
+{% endblock %}

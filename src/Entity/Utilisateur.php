@@ -38,6 +38,10 @@ class Utilisateur
      */
     private $matricule;
 
+
+
+
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -45,7 +49,7 @@ class Utilisateur
 
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $nbre_enfant;
 
@@ -101,7 +105,7 @@ class Utilisateur
     private $annee_obtination;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255 ,nullable=true)
      */
     private $langage;
 
@@ -150,40 +154,40 @@ class Utilisateur
     private $tel1;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer" ,nullable=true)
      */
     private $tel2;
 
 
     /**
-     * @ORM\Column(type="integer" ,nullable = true)
+     * @ORM\Column(type="integer")
      */
     private $rib;
 
     /**
-     * @ORM\Column(type="string", length=255 ,nullable = true)
+     * @ORM\Column(type="string", length=255 )
      */
     private $mail_pro;
 
 
     /**
-     * @ORM\Column(type="string", length=255 ,nullable = true)
+     * @ORM\Column(type="string", length=255 )
      */
     private $nom1_urgence;
 
     /**
-     * @ORM\Column(type="string", length=255 ,nullable = true)
+     * @ORM\Column(type="string", length=255 )
      */
     private $prenom1_urgence;
 
 
     /**
-     * @ORM\Column(type="string", length=255 ,nullable = true)
+     * @ORM\Column(type="string", length=255 )
      */
     private $lien1;
 
     /**
-     * @ORM\Column(type="string", length=255 ,nullable = true)
+     * @ORM\Column(type="string", length=255 )
      */
     private $lieu;
 
@@ -215,34 +219,34 @@ class Utilisateur
     private $telephone2;
 
     /**
-     * @ORM\Column(type="date" , nullable = true)
+     * @ORM\Column(type="date" )
      */
     private $date_deb;
 
     /**
-     * @ORM\Column(type="date" ,nullable = true)
+     * @ORM\Column(type="date" )
      */
     private $date_fin;
 
     /**
-     * @ORM\Column(type="string" ,nullable = true)
+     * @ORM\Column(type="string" )
      */
     private $periode_essai;
 
 
     /**
-     * @ORM\Column(type="date" ,nullable = true)
+     * @ORM\Column(type="date" , nullable = true)
      */
     private $date_embauche;
 
 
     /**
-     * @ORM\Column(type="date" ,nullable = true)
+     * @ORM\Column(type="date", nullable = true)
      */
     private $date_depart;
 
     /**
-     * @ORM\Column(type="text" ,nullable = true)
+     * @ORM\Column(type="text" , nullable = true)
      */
     private $raison;
 
@@ -265,6 +269,21 @@ class Utilisateur
      * @ORM\ManyToOne(targetEntity="App\Entity\Chef", inversedBy="utilisateurs")
      */
     private $chefs;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $statut;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $solde_conge;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Assurance::class, mappedBy="utilisateur")
+     */
+    private $assurances;
 
 
 
@@ -780,6 +799,13 @@ class Utilisateur
         $this->lien2 = $lien2;
     }
 
+
+
+
+
+
+
+
     /**
      * @return mixed
      */
@@ -836,6 +862,11 @@ class Utilisateur
     {
         $this->periode_essai = $periode_essai;
     }
+
+
+
+
+
 
 
 
@@ -896,7 +927,10 @@ class Utilisateur
     {
         $this->password = generateRandomString();
         $this->matricule = numeroAL();
+
         $this->taches = new ArrayCollection();
+        $this->assurances = new ArrayCollection();
+
 
 
     }
@@ -910,8 +944,7 @@ class Utilisateur
     {
         $this->contrat = $contrat;
 
-        return $this;
-    }
+        return $this;    }
 
     public function getEquipes(): ?equipe    {
         return $this->equipes;
@@ -958,8 +991,62 @@ class Utilisateur
     }
 
     public function setChefs(?Chef $chefs): self
+    {$this->chefs = $chefs;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
     {
-        $this->chefs = $chefs;
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getSoldeConge(): ?float
+    {
+        return $this->solde_conge;
+    }
+
+    public function setSoldeConge(?float $solde_conge): self
+    {
+        $this->solde_conge = $solde_conge;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Assurance[]
+     */
+    public function getAssurances(): Collection
+    {
+        return $this->assurances;
+    }
+
+    public function addAssurance(Assurance $assurance): self
+    {
+        if (!$this->assurances->contains($assurance)) {
+            $this->assurances[] = $assurance;
+            $assurance->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssurance(Assurance $assurance): self
+    {
+        if ($this->assurances->contains($assurance)) {
+            $this->assurances->removeElement($assurance);
+            // set the owning side to null (unless already changed)
+            if ($assurance->getUtilisateur() === $this) {
+                $assurance->setUtilisateur(null);
+            }
+        }
 
         return $this;
     }
@@ -968,8 +1055,6 @@ class Utilisateur
 
 
 }
-
-
 
 
 
@@ -992,3 +1077,7 @@ function numeroAL($length = 4) {
     }
     return $randomString;
 }
+
+
+
+

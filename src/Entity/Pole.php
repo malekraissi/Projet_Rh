@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\PoleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PoleRepository")
+ * @ORM\Entity(repositoryClass=PoleRepository::class)
  */
 class Pole
 {
@@ -24,12 +25,7 @@ class Pole
     private $nom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Equipe", inversedBy="poles")
-     */
-    private $equipe;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Equipe", mappedBy="poles")
+     * @ORM\OneToMany(targetEntity=Equipe::class, mappedBy="pole")
      */
     private $equipes;
 
@@ -37,8 +33,6 @@ class Pole
     {
         $this->equipes = new ArrayCollection();
     }
-
-
 
     public function getId(): ?int
     {
@@ -57,24 +51,6 @@ class Pole
         return $this;
     }
 
-    public function getEquipe(): ?Equipe
-    {
-        return $this->equipe;
-    }
-
-    public function setEquipe(?Equipe $equipe): self
-    {
-        $this->equipe = $equipe;
-
-        return $this;
-
-    }
-
-    public function __toString()
-    {
-        return $this-> nom;
-    }
-
     /**
      * @return Collection|Equipe[]
      */
@@ -87,7 +63,7 @@ class Pole
     {
         if (!$this->equipes->contains($equipe)) {
             $this->equipes[] = $equipe;
-            $equipe->setPoles($this);
+            $equipe->setPole($this);
         }
 
         return $this;
@@ -98,13 +74,15 @@ class Pole
         if ($this->equipes->contains($equipe)) {
             $this->equipes->removeElement($equipe);
             // set the owning side to null (unless already changed)
-            if ($equipe->getPoles() === $this) {
-                $equipe->setPoles(null);
+            if ($equipe->getPole() === $this) {
+                $equipe->setPole(null);
             }
         }
 
         return $this;
     }
-
-
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }

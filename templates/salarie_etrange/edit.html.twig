@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit SalarieEtrange{% endblock %}
+
+{% block body %}
+    <h1>Edit SalarieEtrange</h1>
+
+    {{ include('salarie_etrange/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('salarie_etrange_index') }}">back to list</a>
+
+    {{ include('salarie_etrange/_delete_form.html.twig') }}
+{% endblock %}

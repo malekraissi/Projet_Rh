@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur recherche{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+    <div class="row">
+
+        <h2 class="title-1 m-b-25">Liste de salariés</h2>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Matricule</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Email</th>
+                <th scope="col">téléphone</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for utilisateur in utilisateurs %}
+                <tr>
+
+                    <td>{{ utilisateur.matricule }}</td>
+                    <td>{{ utilisateur.prenom }}</td>
+                    <td>{{ utilisateur.nom }}</td>
+                    <td>{{ utilisateur.mailPro }}</td>
+                    <td>{{ utilisateur.tel1 }}</td>
+
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="43">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+<div>
+    <a href="{{ path('utilisateur_index') }}"> retourne à la page d'acceuil</a>
+</div>
+
+
+
+{% endblock %}

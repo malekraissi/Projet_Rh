@@ -3,11 +3,12 @@
 {% block title %}Equipe index{% endblock %}
 
 {% block body %}
-    <h1>Equipe index</h1>
+    <h1>Equipes</h1>
 
     <table class="table">
         <thead>
             <tr>
+
                 <th>Nom</th>
                 <th>actions</th>
             </tr>
@@ -15,7 +16,6 @@
         <tbody>
         {% for equipe in equipes %}
             <tr>
-
                 <td>{{ equipe.nom }}</td>
                 <td>
                     <a href="{{ path('equipe_show', {'id': equipe.id}) }}">Afficher</a>
@@ -24,11 +24,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">pas de data</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('equipe_new') }}">Créer vouvel equipe</a>
+    <a href="{{ path('equipe_new') }}">Créer nouvelle équipe</a>
 {% endblock %}

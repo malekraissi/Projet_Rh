@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Assurance{% endblock %}
+
+{% block body %}
+    <h1>Modifier Fichier Assurance</h1>
+
+    {{ include('assurance/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('assurance_index') }}"> liste de fichiers</a>
+
+    {{ include('assurance/_delete_form.html.twig') }}
+{% endblock %}

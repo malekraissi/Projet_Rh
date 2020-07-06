@@ -1,8 +1,15 @@
+<style>
+
+
+    .center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+
 {{ form_start(form) }}
-
-
-
-
 <div class="container">
 
 <div class="card bg-light">
@@ -110,9 +117,55 @@
             </div>
         </div>
 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
+                            </span><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table class="table">
+
+                        <tr>
+                            <td>
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+
+                                        <span class="input-group-text">Matricule</i> </span>
+                                    </div>
+
+                                    {{ form_errors(form.matricule) }}
+                                    {{ form_widget(form.matricule )}}
+                                    {{ form_help(form.matricule ) }}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+
+                                        <span class="input-group-text">mot de passe</i> </span>
+                                    </div>
+
+                                    {{ form_errors(form.password) }}
+                                    {{ form_widget(form.password)}}
+                                    {{ form_help(form.password) }}
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
     </article>
         </fieldset>
-</div>
+    </div>
 </div>
 
 
@@ -318,9 +371,12 @@
                                             </div>
 
 
-                                            <div class="col-sm-6">
-                                                <div class="input-group-prepend">
-                                                    {{ form_label(form.annee_obtination, 'Année d obtination '  ) }}
+                                            <div class="col-sm-3">
+
+                                                    <label>Année d'obtination</label>
+                                            </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-control">
                                                     {{ form_errors(form.annee_obtination) }}
                                                     {{ form_widget(form.annee_obtination) }}
                                                 </div>
@@ -352,9 +408,10 @@
                     <div class="row">
                         <div class="col-ms-4">
                             <div class="form-goup input-group">
+
                                 <div class="input-group-prepend">
 
-                                    <span class="input-group-text">Type de contrat</i> </span>
+                                    <span class="input-group-text">Type de contrat </span>
                                 </div>
 
                                 {{ form_errors(form.contrat) }}
@@ -371,19 +428,21 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 {{ form_label(form.date_fin, 'Date fin '  ) }}
                                 {{ form_errors(form.date_fin) }}
                                 {{ form_widget(form.date_fin) }}
                             </div>
                         </div>
+                        </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
 
-                                    <span class="input-group-text">Période d'essai</i> </span>
+                                    <span class="input-group-text">Période d'essai </span>
                                 </div>
 
                                 {{ form_errors(form.periode_essai) }}
@@ -393,7 +452,8 @@
                         </div>
 
 
-                        <div class="col-md-6">
+
+                        <div class="col-md-4">
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
 
@@ -405,59 +465,166 @@
                                 {{ form_help(form.equipes ) }}
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group input-group">
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text">Poste</i> </span>
+                        </div>
+
+                        {{ form_errors(form.titre) }}
+                        {{ form_widget(form.titre ,  {'attr': {'placeholder': 'titre' , 'class': 'form-control'}})}}
+                        {{ form_help(form.titre ) }}
+                    </div>
+        </div>
+
                     </div>
                 </article>
             </fieldset>
+        </div>
+    </div>
+
+
+
+
+
+
+<div class="card bg-light">
+    <div class="col-md-12 col-xl-12">
+        <fieldset>
+            <legend>Motif de départ</legend>
+            <article class="card-body mx-auto" style="max-width: 1000px;">
+
+                <div class="row">
+                    <div class="col-ms-6">
+                        <div class="form-goup input-group">
+
+                            <div class="input-group-prepend">
+
+                            </div>
+
+                            {{ form_errors(form.raison) }}
+                            {{ form_widget(form.raison ,  {'attr': {'placeholder': 'Raison' , 'class': 'form-control'}})}}
+                            {{ form_help(form.raison ) }}
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="input-group-prepend">
+                            {{ form_label(form.date_depart, 'Date de départ '  ) }}
+                            {{ form_errors(form.date_depart) }}
+                            {{ form_widget(form.date_depart) }}
+                        </div>
+                    </div>
+                        </div>
+                    </article>
+                </fieldset>
+            </div>
         </div>
 
 
 
 
+            <div class="card bg-light">
+                <div class="col-md-12 col-xl-12">
+                    <fieldset>
+                        <legend>Renseignement Complémentaires</legend>
+                        <article class="card-body mx-auto" style="max-width: 1000px;">
+<div>Premiére personne à joindre en cas d'urgence</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group input-group">
 
-
-
-
-        <div class="card bg-light">
-            <div class="col-md-12 col-xl-12">
-                <fieldset>
-                    <legend>Motif du départ</legend>
-                    <article class="card-body mx-auto" style="max-width: 1000px;">
-
-                        <div class="row">
-                            <div class="col-md-9">
-                                <div class="form-group input-group">
-                                    <div class="input-group-prepend">
-
-                                        <span class="input-group-text">Motif du départ</i> </span>
+                                        {{ form_errors(form.nom1_urgence) }}
+                                        {{ form_widget(form.nom1_urgence ,  {'attr': {'placeholder': 'nom' , 'class': 'form-control'}})}}
+                                        {{ form_help(form.nom1_urgence ) }}
                                     </div>
+                                </div>
 
-                                    {{ form_errors(form.raison) }}
-                                    {{ form_widget(form.raison ,  {'attr': {'placeholder': 'raison' , 'class': 'form-control'}})}}
-                                    {{ form_help(form.raison ) }}
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group input-group">
+
+                                        {{ form_errors(form.prenom1_urgence) }}
+                                        {{ form_widget(form.prenom1_urgence ,  {'attr': {'placeholder': 'prenom' , 'class': 'form-control'}})}}
+                                        {{ form_help(form.prenom1_urgence ) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group input-group">
+
+                                        {{ form_errors(form.telephone1) }}
+                                        {{ form_widget(form.telephone1 ,  {'attr': {'placeholder': 'numéro téléphone' , 'class': 'form-control'}})}}
+                                        {{ form_help(form.telephone1 ) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group input-group">
+
+                                        {{ form_errors(form.lien1) }}
+                                        {{ form_widget(form.lien1 ,  {'attr': {'placeholder': 'lien avec le salarié' , 'class': 'form-control'}})}}
+                                        {{ form_help(form.lien1 ) }}
+                                    </div>
                                 </div>
                             </div>
+                        </article>
 
-                        </div>
-                    </article>
-                </fieldset>
+
+
+
+                        <article class="card-body mx-auto" style="max-width: 1000px;">
+                            <div>Deuxiéme personne à joindre en cas d'urgence</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group input-group">
+
+                                        {{ form_errors(form.nom2_urgence) }}
+                                        {{ form_widget(form.nom2_urgence ,  {'attr': {'placeholder': 'nom' , 'class': 'form-control'}})}}
+                                        {{ form_help(form.nom2_urgence ) }}
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group input-group">
+
+                                        {{ form_errors(form.prenom2_urgence) }}
+                                        {{ form_widget(form.prenom2_urgence ,  {'attr': {'placeholder': 'prenom' , 'class': 'form-control'}})}}
+                                        {{ form_help(form.prenom2_urgence ) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group input-group">
+
+                                        {{ form_errors(form.telephone2) }}
+                                        {{ form_widget(form.telephone2 ,  {'attr': {'placeholder': 'numéro téléphone' , 'class': 'form-control'}})}}
+                                        {{ form_help(form.telephone2 ) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group input-group">
+
+                                        {{ form_errors(form.lien2) }}
+                                        {{ form_widget(form.lien2 ,  {'attr': {'placeholder': 'lien avec le salarié' , 'class': 'form-control'}})}}
+                                        {{ form_help(form.lien2 ) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </fieldset>
+                </div>
             </div>
+                <div class="container">
+                    <div class="center">
+    <button class="btn btn-primary">{{ button_label|default('Créer') }}</button>
+            </div>
+                </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-    <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
 

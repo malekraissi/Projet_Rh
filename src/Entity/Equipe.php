@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\EquipeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\EquipeRepository")
+ * @ORM\Entity(repositoryClass=EquipeRepository::class)
  */
 class Equipe
 {
@@ -23,10 +22,15 @@ class Equipe
      */
     private $nom;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Pole::class, inversedBy="equipes")
+     */
+    private $pole;
 
-
-
-
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getNom(): ?string
     {
@@ -40,9 +44,20 @@ class Equipe
         return $this;
     }
 
+    public function getPole(): ?Pole
+    {
+        return $this->pole;
+    }
+
+    public function setPole(?Pole $pole): self
+    {
+        $this->pole = $pole;
+
+        return $this;
+    }
 
     public function __toString()
     {
-        return $this->nom;
+        return $this->getNom();
     }
 }

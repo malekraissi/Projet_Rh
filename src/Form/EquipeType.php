@@ -13,7 +13,7 @@ class EquipeType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('poles')
+            ->add('pole')
         ;
     }
 

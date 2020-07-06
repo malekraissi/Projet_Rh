@@ -6,7 +6,7 @@
 
     <div class="row">
 
-        <h2 class="title-1 m-b-25">Dashboard</h2>
+        <h2 class="title-1 m-b-25">Liste de salariés</h2>
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
@@ -15,20 +15,21 @@
                 <th scope="col">Prénom</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Statut</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
             {% for utilisateur in utilisateurs %}
             <tr>
-                <td>1</td>
+                <td>{{ utilisateur.id }}</td>
                 <td>{{ utilisateur.matricule }}</td>
                 <td>{{ utilisateur.nom }}</td>
                 <td>{{ utilisateur.prenom }}</td>
                 <td>congé</td>
 
                 <td>
-                    <a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">show</a>
-                    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+                    <a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">Afficher</a>
+                    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">Modifier</a>
                 </td>
             </tr>
             {% else %}
@@ -39,7 +40,6 @@
             </tbody>
         </table>
 
-        <a href="{{ path('utilisateur_new') }}">Create new</a>
 
     </div>
 

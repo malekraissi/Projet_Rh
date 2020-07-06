@@ -36,6 +36,11 @@ class Client
      */
     private $tel;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=SalarieEtrange::class, inversedBy="clients")
+     */
+    private $salarieEtranges;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Client
     public function setTel(string $tel): self
     {
         $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getSalarieEtranges(): ?SalarieEtrange
+    {
+        return $this->salarieEtranges;
+    }
+
+    public function setSalarieEtranges(?SalarieEtrange $salarieEtranges): self
+    {
+        $this->salarieEtranges = $salarieEtranges;
 
         return $this;
     }

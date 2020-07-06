@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande{% endblock %}
+
+{% block body %}
+    <h1>Demande</h1>
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Nom de salarié</th>
+            <td>{{ demande.nom }}</td>
+        </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ demande.type }}</td>
+            </tr>
+            <tr>
+                <th>NbreJour</th>
+                <td>{{ demande.nbreJour }}</td>
+            </tr>
+            <tr>
+                <th>Chef de projet</th>
+                <td>{{ demande.validateur }}</td>
+            </tr>
+            <tr>
+                <th>Date debut</th>
+                <td>{{ demande.dateDeb ? demande.dateDeb|date('d-m-y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date fin</th>
+                <td>{{ demande.dateFin ? demande.dateFin|date('d-m-y') : '' }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+<div>
+
+        <label>choisir le chef</label>
+<select>
+            {% for utilisateur in utilisateurs %}
+                <option name="email">
+                    {{ utilisateur.mailPro}}
+                </option>
+</select>
+
+                <h1>
+               <a href="{{ path('demande_valider', {'id': demande.id ,'email': utilisateur.mailPro}) }}" class="btn btn-primary">Valider</a>
+                </h1>
+    {% endfor %}
+
+</div>
+<div>
+    {{ include('demande/_delete_form.html.twig') }}
+
+
+</div>
+    <div>
+    <a href="{{ path('demande_index') }}">Retourne à la liste</a>
+    </div>
+
+
+
+
+{% endblock %}

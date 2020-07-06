@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Assurance{% endblock %}
+
+{% block body %}
+    <h1>Assurance</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom de salarié</th>
+                <td>{{ assurance.utilisateur }}</td>
+            </tr>
+            <tr>
+                <th>Fichier</th>
+                <td>{{ assurance.fichier }}</td>
+            </tr>
+            <tr>
+                <a href="{{asset('uploads/brochures/' ~ assurance.nom)}}"
+                   class="btn btn-success">Télécharger</a>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('assurance_index') }}">Liste des fichiers</a>
+
+
+
+    {{ include('assurance/_delete_form.html.twig') }}
+{% endblock %}

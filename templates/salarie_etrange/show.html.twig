@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SalarieEtrange{% endblock %}
+
+{% block body %}
+    <h1>SalarieEtrange</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ salarie_etrange.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ salarie_etrange.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ salarie_etrange.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ salarie_etrange.email }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ salarie_etrange.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ salarie_etrange.tel }}</td>
+            </tr>
+            <tr>
+                <th>Date_embauche</th>
+                <td>{{ salarie_etrange.dateEmbauche ? salarie_etrange.dateEmbauche|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Type_sejour</th>
+                <td>{{ salarie_etrange.typeSejour }}</td>
+            </tr>
+            <tr>
+                <th>Num_sejour</th>
+                <td>{{ salarie_etrange.numSejour }}</td>
+            </tr>
+            <tr>
+                <th>Date_debu_visa</th>
+                <td>{{ salarie_etrange.dateDebuVisa ? salarie_etrange.dateDebuVisa|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin_visa</th>
+                <td>{{ salarie_etrange.dateFinVisa ? salarie_etrange.dateFinVisa|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('salarie_etrange_index') }}">back to list</a>
+
+    <a href="{{ path('salarie_etrange_edit', {'id': salarie_etrange.id}) }}">edit</a>
+
+    {{ include('salarie_etrange/_delete_form.html.twig') }}
+{% endblock %}

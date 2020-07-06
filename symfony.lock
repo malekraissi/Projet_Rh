@@ -163,6 +163,9 @@
             "ref": "384cec52df45f3bfd46a09930d6960a58872b268"
         }
     },
+    "mgilet/notification-bundle": {
+        "version": "3.1"
+    },
     "monolog/monolog": {
         "version": "1.25.3"
     },

@@ -17,34 +17,23 @@ class DemandeRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Demande::class);
+
+
     }
 
-    // /**
-    //  * @return Demande[] Returns an array of Demande objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Demande
+
+    public function findOneByNomCHef($nom)
     {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $qb= $this->createQueryBuilder('d');
+        $qb->where('d.validateur = :val')
+            ->setParameter('val' , $nom);
+        $query = $qb->getQuery();
+
+        return $query->execute();
     }
-    */
+
+
+
+
 }

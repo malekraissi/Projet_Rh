@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SalarieEtrange index{% endblock %}
+
+{% block body %}
+    <h1>SalarieEtrange index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>Tel</th>
+                <th>Date_embauche</th>
+                <th>Type_sejour</th>
+                <th>Num_sejour</th>
+                <th>Date_debu_visa</th>
+                <th>Date_fin_visa</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for salarie_etrange in salarie_etranges %}
+            <tr>
+                <td>{{ salarie_etrange.id }}</td>
+                <td>{{ salarie_etrange.nom }}</td>
+                <td>{{ salarie_etrange.prenom }}</td>
+                <td>{{ salarie_etrange.email }}</td>
+                <td>{{ salarie_etrange.adresse }}</td>
+                <td>{{ salarie_etrange.tel }}</td>
+                <td>{{ salarie_etrange.dateEmbauche ? salarie_etrange.dateEmbauche|date('Y-m-d') : '' }}</td>
+                <td>{{ salarie_etrange.typeSejour }}</td>
+                <td>{{ salarie_etrange.numSejour }}</td>
+                <td>{{ salarie_etrange.dateDebuVisa ? salarie_etrange.dateDebuVisa|date('Y-m-d') : '' }}</td>
+                <td>{{ salarie_etrange.dateFinVisa ? salarie_etrange.dateFinVisa|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('salarie_etrange_show', {'id': salarie_etrange.id}) }}">show</a>
+                    <a href="{{ path('salarie_etrange_edit', {'id': salarie_etrange.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('salarie_etrange_new') }}">Create new</a>
+{% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DemandeRepository")
@@ -33,13 +34,29 @@ class Demande
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\Date
+     * @var string A "Y-m-d" formatted value
      */
+
     private $date_deb;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\Date
+     * @var string A "Y-m-d" formatted value
      */
     private $date_fin;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
+
+
+
+
+
+
 
     public function getId(): ?int
     {
@@ -105,4 +122,21 @@ class Demande
 
         return $this;
     }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+
+
+
+
 }

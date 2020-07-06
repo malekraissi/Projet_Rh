@@ -22,15 +22,20 @@ class Contrat
      * @ORM\Column(type="string", length=255)
      */
     private $type;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Utilisateur", mappedBy="contrat")
      */
     private $utilisateurs;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SalarieEtrange::class, mappedBy="contrat")
+     */
+    private $salaries;
+
     public function __construct()
     {
         $this->utilisateurs = new ArrayCollection();
+        $this->salaries = new ArrayCollection();
     }
 
 
@@ -87,6 +92,37 @@ class Contrat
 public function __toString()
 {
     return $this->type;
+}
+
+/**
+ * @return Collection|SalarieEtrange[]
+ */
+public function getSalaries(): Collection
+{
+    return $this->salaries;
+}
+
+public function addSalary(SalarieEtrange $salary): self
+{
+    if (!$this->salaries->contains($salary)) {
+        $this->salaries[] = $salary;
+        $salary->setContrat($this);
+    }
+
+    return $this;
+}
+
+public function removeSalary(SalarieEtrange $salary): self
+{
+    if ($this->salaries->contains($salary)) {
+        $this->salaries->removeElement($salary);
+        // set the owning side to null (unless already changed)
+        if ($salary->getContrat() === $this) {
+            $salary->setContrat(null);
+        }
+    }
+
+    return $this;
 }
 
 

@@ -1,4 +1,101 @@
+<style>
+
+
+    .center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+
+
+
+
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn-primary">{{ button_label|default('Ajouter') }}</button>
+<div class="container">
+
+    <div class="card bg-light">
+        <div class="col-md-12 col-xl-12">
+            <fieldset>
+                <article class="card-body mx-auto" style="max-width: 1000px;">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                {{ form_errors(form.nom) }}
+                                {{ form_widget(form.nom ,  {'attr': {'placeholder': 'Nom de client' , 'class': 'form-control'}})}}
+                                {{ form_help(form.nom ) }}
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                {{ form_errors(form.adresse) }}
+                                {{ form_widget(form.adresse ,  {'attr': {'placeholder': 'Adresse' , 'class': 'form-control'}})}}
+                                {{ form_help(form.adresse ) }}
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+
+                                    <span class="input-group-text"> <i class="fa fa-calendar-o"></i> </span>
+                                </div>
+                                {{ form_errors(form.email) }}
+                                {{ form_widget(form.email ,  {'attr': {'placeholder': 'email' , 'class': 'form-control'}})}}
+                                {{ form_help(form.email ) }}
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+
+                                    <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+                                </div>
+                                {{ form_errors(form.tel) }}
+                                {{ form_widget(form.tel ,  {'attr': {'placeholder': 'Téléphone' , 'class': 'form-control'}})}}
+                                {{ form_help(form.tel ) }}
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+</div>
+                    <div class="center">
+                        <button class="btn btn-primary">{{ button_label|default('Créer') }}</button>
+                    </div>
+
+                </article>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+
 {{ form_end(form) }}
